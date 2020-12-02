@@ -1,4 +1,4 @@
 goinfra:
   go-infrabin:
-    autoscaling:
-      enabled: true
+    podAnnotations:
+      mykey: myvalue
