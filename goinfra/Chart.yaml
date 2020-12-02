@@ -1,5 +1,1 @@
 name: goinfra
-dependencies:
-- name: go-infrabin
-  version: 0.2.0
-  repository: "https://maruina.github.io/go-infrabin"
