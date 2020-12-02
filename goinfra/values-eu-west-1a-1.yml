@@ -1,0 +1,3 @@
+go-infrabin:
+  autoscaling:
+    enabled: true
