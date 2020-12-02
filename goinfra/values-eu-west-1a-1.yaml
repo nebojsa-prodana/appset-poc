@@ -1,11 +1,5 @@
-goinfra:
-  go-infrabin:
-    autoscaling:
-      enabled: true
-  autoscaling:
-    enabled: true
 go-infrabin:
-    autoscaling:
-      enabled: true
-    podAnnotations:
-      mykey: myvalue
+  replicaCount: 3
+  podAnnotations:
+    mykey: myvalue
+    myotherkey: myothervalue
