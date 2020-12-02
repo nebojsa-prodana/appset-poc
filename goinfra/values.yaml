@@ -1,2 +1,3 @@
-go-infrabin:
-  replicaCount: 2
+goinfra:
+  go-infrabin:
+    replicaCount: 2
