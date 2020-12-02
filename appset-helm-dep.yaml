@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: appset-helm-dep
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+        - cluster: eu-west-1a-1
+          url: "https://eu-west-1a-1-control-plane:6443"
+  template:
+    metadata:
+      name: '{{cluster}}-helm-dep'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/maruina/appset-poc.git
+        targetRevision: HEAD
+        path: goinfra
+        helm:
+          release: goinfra-helm-dep
+          valueFiles:
+            - "values.yaml"
+            - "values-{{cluster}}.yaml"
+          parameters:
+            - name: go-infrabin.podAnnotations.gitsha
+              value: ${ARGOCD_APP_REVISION}
+      destination:
+        server: '{{url}}'
+        namespace: infrabin
