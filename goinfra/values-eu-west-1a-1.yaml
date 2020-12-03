@@ -1,4 +1,4 @@
 go-infrabin:
-  replicaCount: 3
+  replicaCount: 1
   podAnnotations:
     mykey: myvalue
