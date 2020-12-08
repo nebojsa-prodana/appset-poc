@@ -9,6 +9,10 @@ spec:
       elements:
         - cluster: eu-west-1a-1
           url: "https://eu-west-1a-1-control-plane:6443"
+        - cluster: eu-west-1b-1
+          url: "https://eu-west-1b-1-control-plane:6443"
+        - cluster: eu-central-1a-1
+          url: "https://eu-central-1a-1-control-plane:6443"
   template:
     metadata:
       name: '{{cluster}}-helm-dep'
@@ -19,7 +23,7 @@ spec:
         targetRevision: HEAD
         path: goinfra
         helm:
-          release: goinfra-helm-dep
+          releaseName: goinfra
           valueFiles:
             - "values.yaml"
             - "values-{{cluster}}.yaml"
