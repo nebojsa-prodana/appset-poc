@@ -1,0 +1,2 @@
+go-infrabin:
+  replicaCount: 3
