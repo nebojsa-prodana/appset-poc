@@ -1,2 +1,2 @@
 go-infrabin:
-  replicaCount: 2
+  replicaCount: 1
