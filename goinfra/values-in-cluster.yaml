@@ -1,4 +1,5 @@
 go-infrabin:
-  replicaCount: 2
   podAnnotations:
     mykey: myvalue
+  autoscaling:
+    enabled: true
