@@ -1,5 +1,5 @@
 go-infrabin:
   podAnnotations:
-    mykey: myvalue
+    mykey: anothervalue
   autoscaling:
     enabled: true
