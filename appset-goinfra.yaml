@@ -1,21 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: appset-helm-dep
+  name: appset-goinfra
   namespace: argocd
 spec:
   generators:
   - list:
       elements:
-        - cluster: eu-west-1a-1
-          url: "https://eu-west-1a-1-control-plane:6443"
-        - cluster: eu-west-1b-1
-          url: "https://eu-west-1b-1-control-plane:6443"
-        - cluster: eu-central-1a-1
-          url: "https://eu-central-1a-1-control-plane:6443"
+        - cluster: in-cluster
+          url: https://kubernetes.default.svc
   template:
     metadata:
-      name: '{{cluster}}-helm-dep'
+      name: 'goinfra-{{cluster}}'
     spec:
       project: default
       source:
@@ -23,12 +19,12 @@ spec:
         targetRevision: HEAD
         path: goinfra
         helm:
-          releaseName: goinfra
+          releaseName: "goinfra"
           valueFiles:
             - "values.yaml"
             - "values-{{cluster}}.yaml"
           parameters:
-            - name: go-infrabin.podAnnotations.gitsha
+            - name: go-infrabin.podAnnotations.gitsha #mshell-service.deployment.image.tag
               value: ${ARGOCD_APP_REVISION}
       destination:
         server: '{{url}}'
